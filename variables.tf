@@ -7,3 +7,4 @@ variable "sns-topic-name" {
   type = string
   default = ""
 }
+
