@@ -1,3 +1,4 @@
+
 resource "aws_s3_bucket" "module_bucket" {
   bucket = var.bucket_name
 }
@@ -33,18 +34,18 @@ resource "aws_s3_bucket_notification" "sqs-bucket_notification" {
   dynamic "queue" {
     for_each = var.queue_details
     content {
-      id        = queue.key
+      id        = queue.key    
       queue_arn = queue.value["arn"]
       events    = queue.value["events"]
     }
   }
 
-  dynamic "topic" {
-    for_each = var.sns_topic_details
-    content {
-      topic_arn = topic.value["arn"]
-      events    = topic.value["events"]
-    }
-  }
+  # dynamic "topic" {
+  #   for_each = var.sns_topic_details
+  #   content {
+  #     topic_arn = topic.value["arn"]
+  #     events    = topic.value["events"]
+  #   }
+  # }
 
 }
