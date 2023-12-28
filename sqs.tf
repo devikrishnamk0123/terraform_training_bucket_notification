@@ -1,24 +1,3 @@
-# data "aws_iam_policy_document" "queue" {
-#   statement {
-#     effect = "Allow"
-
-#     principals {
-#       type        = "*"
-#       identifiers = ["*"]
-#     }
-
-#     actions   = ["sqs:SendMessage"]
-    
-    
-#     resources = ["arn:aws:sqs:*:*:, ${var.sqs-queue-names[0]}", ]
-
-#     condition {
-#       test     = "ArnEquals"
-#       variable = "aws:SourceArn"
-#       values   = [module.aws_s3_bucket.bucket_arn]
-#     }
-#   }
-# }
 locals {
   buckets_with_queue_details = {
     for k, v in var.bucket_configurations : k => {for k2, v2 in v.queue_details: k2 => merge(v2,{bucket_name = k})} if v.queue_details != null
