@@ -10,14 +10,16 @@ variable "bucket_is_private" {
 variable "queue_details" {
   type = map(object({
     arn = string
+    bucket_name = string
     events = list(string)
-  }))
+  })) 
   default = {}
 }
 
 variable "sns_topic_details" {
   type = map(object({
     arn = string
+    bucket_name = string
     events = list(string)
   }))
   default = {}
